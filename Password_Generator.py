@@ -1,26 +1,41 @@
-# Random Password Generator using Python
-
 import string
 import random
 
-def create_password(length, use_digits=True, use_symbols=True):
-    chars = string.ascii_letters  # includes a-z + A-Z
+print("~ ~ ~ WELCOME TO SIMPLE CALCULATOR ~ ~ ~")
+print("---------------------------------")
+# input for password length
+length = int(input("Please enter password length: "))
+print("Choose character set for password: ") 
+print("1. LETTERS")
+print("2. DIGITS")         
+print("3. SPECIAL CHARACTERS")     
+print("4. EXIT")
+print("---------------------------------")
 
-    if use_digits:
-        chars += string.digits
-    if use_symbols:
-        chars += string.punctuation
+characterList = ""
 
-    password = "".join(random.choice(chars) for _ in range(length))
-    return password
+# Getting character set for password
+while(True):
+    choice = int(input("Pick a number: "))
+    if(choice == 1):
+        characterList += string.ascii_letters
+    elif(choice == 2):
+        characterList += string.digits
+    elif(choice == 3):
+        characterList += string.punctuation
+    elif(choice == 4):
+        break
+    else:
+        print("Please pick a valid option!")
 
-print("=== Strong Password Generator ===")
-try:
-    length = int(input("How long should the password be? "))
-    digits = input("Include numbers? (y/n): ").lower() == 'y'
-    symbols = input("Include symbols? (y/n): ").lower() == 'y'
+password = []
 
-    result = create_password(length, digits, symbols)
-    print("Your new password:", result)
-except ValueError:
-    print("Please enter a valid number.")
+for i in range(length):
+    # Picking a random character 
+    randomchar = random.choice(characterList)
+    
+    # Appending a random character to password
+    password.append(randomchar)
+
+print("The random password is " + "".join(password))
+print("THANKS FOR USING THE PASSWORD GENERATOR. HAVE A NICE DAY :)")
